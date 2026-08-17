@@ -16,6 +16,9 @@ Iteration back and forth will delay PR review or inclusion. Be extremely thoroug
 
 ## Important Notices
 
+### 2026-08-17
+Did guidance from **Vercel** related to bypassing root domain verification bring you here? If so, please work with Vercel [Help Link](https://community.vercel.com/c/help) directly for these limitations. [The PSL is **NOT** intended as a workaround for Vercel's subdomain restrictions](https://github.com/publicsuffix/list/wiki/Third-Party-Diffusion). 
+
 ### 2026-05-06
 Pull Requests MUST use the automated template when adding.  Do not cut and paste it into a GPT to generate a response or delete / alter the form. Pull requests that do not use the template, that alter it or summarize it will be closed by volunteers without action.  Why?  There are specific checkboxes that are part of the volunteers' review or are important attestations for public record and transparency and consistency of processing. 
 
