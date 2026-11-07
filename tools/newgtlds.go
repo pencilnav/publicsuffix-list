@@ -130,38 +130,15 @@ func (e *pslEntry) normalize() {
 }
 
 // Comment generates a comment string for the pslEntry. This string has a `//`
-// prefix and matches one of the following two forms.
+// prefix and matches the following form:
 //
-// If the registry operator field is empty the comment will be of the form:
-//
-//	// <ALabel>
-//	// https://www.iana.org/domains/root/db/<ALabel>.html
-//
-// If the registry operator field is not empty the comment will be of the form:
-//
-//	// <ALabel> : <RegistryOperator>
-//	// https://www.iana.org/domains/root/db/<ALabel>.html
-
+//	// <ALabel> : https://www.iana.org/domains/root/db/<ALabel>.html
 func (e pslEntry) Comment() string {
-	parts := []string{
-		"//",
-		e.ALabel,
-	}
-	// Avoid two trailing spaces if registry operator is empty
-	if e.RegistryOperator != "" {
-		parts = append(parts, []string{":", e.RegistryOperator}...)
-	}
-
-	ianaUrl, err := url.JoinPath(IANA_TLD_URL_BASE, e.ALabel+".html")
+	ianaURL, err := url.JoinPath(IANA_TLD_URL_BASE, e.ALabel+".html")
 	if err != nil {
 		panic(fmt.Sprintf("invalid joined IANA TLD URL for %q: %v", e.ALabel, err))
 	}
-	ianaUrl = "// " + ianaUrl
-
-	return strings.Join([]string{
-		strings.Join(parts, " "),
-		ianaUrl,
-	}, "\n")
+	return fmt.Sprintf("// %s : %s", e.ALabel, ianaURL)
 }
 
 // gTLDDatSpan represents the span between the PSL_GTLD_SECTION_HEADER and
